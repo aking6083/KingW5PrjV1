@@ -1,8 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+        IBookScvSerialImp.java ~ The implementation of the IbookSvc interface.
+        
+        @author Adam King
+        @version 1
+*/
 package Service;
 import domain.*;
 
@@ -18,20 +19,16 @@ public class BookSvcSerialImp implements IBookSvc, Serializable
 {
 
     @Override
-    public Book create(Book b) {
-        
-
-//Create the book
-        
-        b = new Book();
-       
-        return b;
-        
+    public Book create(Book book) {
+    //Create the book
+        book = new Book();
+        return book;
     }
 
     @Override
     public Book add(Book b) {
     
+        //Write object to stream.
         try {
             ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("thisFile"));
             output.writeObject(b);

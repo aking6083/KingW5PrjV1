@@ -1,6 +1,9 @@
 /*
- * 
- */
+        BookMgrGUI.java ~ Class to present the add book to library
+        
+        @author Adam King
+        @version 1
+*/
 package presentation;
 
 import Service.Factory;
@@ -193,14 +196,19 @@ public class BookMgrGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Add book action button
+     */
     private void AddBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBookBtnActionPerformed
         
-     
+        //Get a factory
         Factory factory = new Factory();
+        //Get a service from the factory
         IBookSvc bookSvc = factory.getBookSvc();
+        //use the service to create the book object
         Book newBook = bookSvc.create(new Book());
         LinkedList<String>bookAuthors = getAuthors();
-        //Manger creates the book then adds the book,.
+        //Populate the book
         newBook.setAuthors(bookAuthors);
         newBook.setIsbn(this.isbnField.getText());
         newBook.setTitle(this.titleTxtField.getText());
@@ -208,7 +216,7 @@ public class BookMgrGUI extends javax.swing.JFrame {
         if (newBook.validate())
         {
             bookSvc.add(newBook);
-            this.statusLbl2.setText(newBook.toString() + "has been written");
+            this.statusLbl2.setText(newBook.toString() + "\nhas been written");
             
         }
         else
@@ -218,6 +226,9 @@ public class BookMgrGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_AddBookBtnActionPerformed
 
+    /**
+     * Get the authors form the text field and store them in a linkedlist
+     */
     private LinkedList<String>getAuthors() 
     {
         LinkedList<String> authors = new LinkedList<>();
@@ -236,13 +247,9 @@ public class BookMgrGUI extends javax.swing.JFrame {
         }
        return authors;
     } 
+        
             
-            
-    public String getBookTitle()
-    {
-        return this.titleTxtField.getText();
- 
-    }
+    
     private void isbnFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isbnFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_isbnFieldActionPerformed
